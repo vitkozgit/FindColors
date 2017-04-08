@@ -7,5 +7,7 @@ int main(int argc, char *argv[])
     FindColors w;
     w.show();
 
+    //Siema
+
     return a.exec();
 }
