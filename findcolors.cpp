@@ -11,29 +11,37 @@ FindColors::FindColors(QWidget *parent) :
 
 FindColors::~FindColors() {
     delete ui;
+    delete color_;
 }
 
 void FindColors::processVideo() {
-    video_.getVideoCapture()->read(mat_);
-    cv::imshow("Mat",mat_);
-}
-
-void FindColors::on_radioButtonCamera_clicked() {
-    video_.getVideoCapture()->open(0);
-    QObject::connect(video_.getTimer().get(),SIGNAL(timeout()),this, SLOT(processVideo()));
-    video_.getTimer()->start(20);
-
-    video_.getVideoCapture()->read(mat_);
-    size_ = QSize(mat_.cols,mat_.rows);
+    video_.getVideoCapture()->read(matrix_.getWorkMat());
+    cv::imshow("Mat",matrix_.getWorkMat());
 }
 
 void FindColors::setSizeImg(const QSize& size) {
     size_ = size;
 }
 
-auto FindColors::getSizeImg() const {
+QSize& FindColors::getSizeImg() {
     return size_;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

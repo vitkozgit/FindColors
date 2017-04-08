@@ -13,6 +13,10 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include "video.h"
+#include "matrices.h"
+#include "colorH/color.h"
+#include "colorH/rgb.h"
+#include "colorH/hsv.h"
 
 namespace Ui {
 class FindColors;
@@ -25,22 +29,28 @@ public:
     explicit FindColors(QWidget *parent = 0);
     ~FindColors();
     void defaultStyles();
-    void setSizeImg(const QSize& sizeImg);
-    auto getSizeImg() const;
+    void setSizeImg(const QSize& size);
+    QSize& getSizeImg();
 
 public slots:
     void processVideo();
 
 private slots:
     void on_radioButtonCamera_clicked();
+    void on_radioButtonRGB_clicked();
+    void on_radioButtonHSV_clicked();
+    void on_radioButtonPhoto_clicked();
+    void on_radioButtonInRun_clicked();
 
 private:
     Ui::FindColors *ui;
     QPixmap myPicture_;
     Video video_;
-    cv::Mat mat_;
+    Matrices matrix_;
+    std::vector<std::vector<int>> cMask_;
     QSize size_;
-    std::vector<std::vector<std::pair<int,int>>> cMask;
+    int sizeSquare_;
+    Color *color_;
 };
 
 #endif // FINDCOLORS_H

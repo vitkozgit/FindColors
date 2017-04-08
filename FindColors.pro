@@ -17,10 +17,19 @@ TEMPLATE = app
 SOURCES += main.cpp\
         findcolors.cpp \
     styles.cpp \
-    video.cpp
+    video.cpp \
+    matrices.cpp \
+    interfaceactions.cpp \
+    colorCPP/color.cpp \
+    colorCPP/hsv.cpp \
+    colorCPP/rgb.cpp
 
 HEADERS  += findcolors.h \
-    video.h
+    video.h \
+    matrices.h \
+    colorH/color.h \
+    colorH/hsv.h \
+    colorH/rgb.h
 
 FORMS    += findcolors.ui
 
@@ -29,4 +38,6 @@ INCLUDEPATH += /usr/local/include/opencv /usr/local/include/opencv2
 LIBS += `pkg-config --cflags --libs opencv`
 
 DISTFILES += \
-    Resources/War.jpg
+    Resources/War.jpg \
+    colors/hsv.rgb \
+    README.md

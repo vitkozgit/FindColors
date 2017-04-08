@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>798</width>
-    <height>487</height>
+    <width>984</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QPushButton" name="pushButtonSetErrors">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>250</y>
+      <x>70</x>
+      <y>430</y>
       <width>211</width>
       <height>41</height>
      </rect>
@@ -37,10 +37,10 @@ background-color: cyan;</string>
    <widget class="QLabel" name="labelPicture">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>500</x>
       <y>30</y>
-      <width>271</width>
-      <height>381</height>
+      <width>401</width>
+      <height>521</height>
      </rect>
     </property>
     <property name="text">
@@ -50,8 +50,8 @@ background-color: cyan;</string>
    <widget class="QRadioButton" name="radioButtonPhoto">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>320</y>
+      <x>60</x>
+      <y>480</y>
       <width>104</width>
       <height>30</height>
      </rect>
@@ -80,8 +80,8 @@ color: rgb(0, 0, 255);</string>
    <widget class="QRadioButton" name="radioButtonInRun">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>320</y>
+      <x>190</x>
+      <y>480</y>
       <width>104</width>
       <height>30</height>
      </rect>
@@ -107,13 +107,13 @@ color: rgb(0, 0, 255);</string>
      <string>In Run</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>120</y>
-      <width>212</width>
-      <height>124</height>
+      <x>30</x>
+      <y>60</y>
+      <width>311</width>
+      <height>171</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -122,7 +122,7 @@ color: rgb(0, 0, 255);</string>
        <item>
         <widget class="QLabel" name="label_7">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; font-style:italic;&quot;&gt;Square&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -159,13 +159,13 @@ color: rgb(0, 0, 255);</string>
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberOne"/>
+        <widget class="QLCDNumber" name="lcdNumberOneS"/>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberTwo"/>
+        <widget class="QLCDNumber" name="lcdNumberTwoS"/>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberThree"/>
+        <widget class="QLCDNumber" name="lcdNumberThreeS"/>
        </item>
       </layout>
      </item>
@@ -179,23 +179,23 @@ color: rgb(0, 0, 255);</string>
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberErrOne"/>
+        <widget class="QLCDNumber" name="lcdNumberErrOneS"/>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberErrTwo"/>
+        <widget class="QLCDNumber" name="lcdNumberErrTwoS"/>
        </item>
        <item>
-        <widget class="QLCDNumber" name="lcdNumberErrThree"/>
+        <widget class="QLCDNumber" name="lcdNumberErrThreeS"/>
        </item>
       </layout>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>50</y>
+      <y>20</y>
       <width>383</width>
       <height>32</height>
      </rect>
@@ -278,11 +278,11 @@ color: rgb(0, 0, 255);</string>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>370</y>
+      <x>30</x>
+      <y>530</y>
       <width>301</width>
       <height>32</height>
      </rect>
@@ -352,13 +352,97 @@ color: rgb(0, 0, 255);</string>
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>240</y>
+      <width>311</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; font-style:italic;&quot;&gt;Area&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Red&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Green&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Blue&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QLabel" name="labelValues_2">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Values&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberOneA"/>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberTwoA"/>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberThreeA"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QLabel" name="labelErrors_2">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Errors&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberErrOneA"/>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberErrTwoA"/>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="lcdNumberErrThreeA"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>798</width>
+     <width>984</width>
      <height>20</height>
     </rect>
    </property>
