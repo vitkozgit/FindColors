@@ -15,8 +15,18 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        findcolors.cpp
+        findcolors.cpp \
+    styles.cpp \
+    video.cpp
 
-HEADERS  += findcolors.h
+HEADERS  += findcolors.h \
+    video.h
 
 FORMS    += findcolors.ui
+
+INCLUDEPATH += /usr/local/include/opencv /usr/local/include/opencv2
+
+LIBS += `pkg-config --cflags --libs opencv`
+
+DISTFILES += \
+    Resources/War.jpg
