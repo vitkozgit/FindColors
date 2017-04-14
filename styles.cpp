@@ -3,6 +3,8 @@
 
 void FindColors::defaultStyles() {
     QSize size = ui->labelPicture->size();
+    //QDir myDir = QDir::currentPath();
+    auto path = QApplication::applicationDirPath();
     myPicture_ = QPixmap("/home/vitali/Projects/Zadanie_5_NEW/FindColors/Resources/War.jpg");
     ui->labelPicture->setPixmap(myPicture_.scaled(size,Qt::KeepAspectRatio));
 
@@ -28,4 +30,17 @@ void FindColors::defaultStyles() {
     color_ = new Rgb();
     ui->radioButtonRGB->setEnabled(false);
     ui->radioButtonHSV->setEnabled(true);
+
+    color_->setColorErrSquare(cv::Vec3b(ui->lcdNumberErrOneS->value(),
+                                        ui->lcdNumberErrTwoS->value(),
+                                        ui->lcdNumberErrThreeS->value()));
+    color_->setColorErrArea(cv::Vec3b(ui->lcdNumberErrOneA->value(),
+                                      ui->lcdNumberErrTwoA->value(),
+                                      ui->lcdNumberErrThreeA->value()));
+
+
 }
+
+
+
+

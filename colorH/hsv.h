@@ -7,12 +7,20 @@ class Hsv : public Color {
 public:
     Hsv();
     ~Hsv();
-    virtual cv::Vec3b doMeanColor(const std::pair<int,int>& p, int sizeSquare);
-    cv::Vec3b& getHsvPixel();
-    cv::Vec3b& getHsvSquare();
-    cv::Vec3b& getHsvFirstArea();
-    cv::Vec3b& getHsvErrSquare();
-    cv::Vec3b& getHsvErrArea();
+    virtual void doMeanColorFirstSquare(const std::pair<int,int>& p, const SizeSquare& sizeSquare, const cv::Mat& mat);
+    virtual cv::Vec3b doMeanColorTmpSquare(const std::pair<int,int>& p, const SizeSquare& sizeSquare, const cv::Mat& mat);
+    virtual void doColorFirstPixel(const std::pair<int,int>& p, const cv::Mat& mat);
+    virtual bool compareColorOfNextSquare(const cv::Vec3b& color);
+    virtual cv::Vec3b& getColorPixel();
+    virtual cv::Vec3b& getColorSquare();
+    virtual cv::Vec3b& getColorFirstArea();
+    virtual cv::Vec3b& getColorErrSquare();
+    virtual cv::Vec3b& getColorErrArea();
+    virtual void setColorPixel(const cv::Vec3b& colorPixel);
+    virtual void setColorSquare(const cv::Vec3b& colorSquare);
+    virtual void setColorFirstArea(const cv::Vec3b& colorFirstArea);
+    virtual void setColorErrSquare(const cv::Vec3b& colorErrSquare);
+    virtual void setColorErrArea(const cv::Vec3b& colorErrArea);
 
 private:
     cv::Vec3b hsvPixel_;

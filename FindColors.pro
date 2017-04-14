@@ -22,14 +22,18 @@ SOURCES += main.cpp\
     interfaceactions.cpp \
     colorCPP/color.cpp \
     colorCPP/hsv.cpp \
-    colorCPP/rgb.cpp
+    colorCPP/rgb.cpp \
+    xypoints.cpp \
+    sizesquare.cpp
 
 HEADERS  += findcolors.h \
     video.h \
     matrices.h \
     colorH/color.h \
     colorH/hsv.h \
-    colorH/rgb.h
+    colorH/rgb.h \
+    xypoints.h \
+    sizesquare.h
 
 FORMS    += findcolors.ui
 

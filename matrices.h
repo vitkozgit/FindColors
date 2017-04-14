@@ -8,13 +8,23 @@
 
 class Matrices {
 public:
+    Matrices();
+    ~Matrices();
     cv::Mat& getWorkMat();
     cv::Mat& getMaskMat();
     cv::Mat& getPictureMat();
+    const cv::String& getNameWorkMat() const;
+    const cv::String& getNameMaskMat() const;
+    const cv::String& getNamePictureMat() const;
+
+    void setPictureMat(const cv::Mat& mat);
 private:
     cv::Mat workMat_;
     cv::Mat maskMat_;
     cv::Mat pictureMat_;
+    cv::String nameWorkMat_;
+    cv::String nameMaskMat_;
+    cv::String namePictureMat_;
 };
 
 #endif // MATRICES_H

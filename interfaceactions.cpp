@@ -9,6 +9,8 @@ void FindColors::on_radioButtonCamera_clicked() {
     video_.getVideoCapture()->read(matrix_.getWorkMat());
     size_ = QSize(matrix_.getWorkMat().cols,matrix_.getWorkMat().rows);
     cMask_ = std::vector<std::vector<int>>(size_.rheight(), std::vector<int>(size_.rwidth(),0));
+
+
 }
 
 void FindColors::on_radioButtonRGB_clicked() {
@@ -32,3 +34,8 @@ void FindColors::on_radioButtonPhoto_clicked() {
 void FindColors::on_radioButtonInRun_clicked() {
 
 }
+
+
+
+
+
