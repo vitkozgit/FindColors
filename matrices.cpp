@@ -37,3 +37,6 @@ void Matrices::setPictureMat(const cv::Mat& mat) {
     pictureMat_ = mat;
 }
 
+void Matrices::setMaskMat(const cv::Mat& mat) {
+    maskMat_ = mat;
+}

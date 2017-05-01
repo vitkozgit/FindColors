@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
-    <height>630</height>
+    <width>477</width>
+    <height>641</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,19 +32,6 @@ background-color: cyan;</string>
     </property>
     <property name="text">
      <string>Set Errors</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelPicture">
-    <property name="geometry">
-     <rect>
-      <x>500</x>
-      <y>30</y>
-      <width>401</width>
-      <height>521</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButtonPhoto">
@@ -442,7 +429,7 @@ color: rgb(0, 0, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>984</width>
+     <width>477</width>
      <height>20</height>
     </rect>
    </property>

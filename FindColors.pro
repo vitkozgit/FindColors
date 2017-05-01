@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     colorCPP/hsv.cpp \
     colorCPP/rgb.cpp \
     xypoints.cpp \
-    sizesquare.cpp
+    sizesquare.cpp \
+    dialogerror.cpp
 
 HEADERS  += findcolors.h \
     video.h \
@@ -33,9 +34,11 @@ HEADERS  += findcolors.h \
     colorH/hsv.h \
     colorH/rgb.h \
     xypoints.h \
-    sizesquare.h
+    sizesquare.h \
+    dialogerror.h
 
-FORMS    += findcolors.ui
+FORMS    += findcolors.ui \
+    dialogerror.ui
 
 INCLUDEPATH += /usr/local/include/opencv /usr/local/include/opencv2
 

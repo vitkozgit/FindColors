@@ -69,12 +69,17 @@ void Hsv::setColorErrArea(const cv::Vec3b& colorErrArea) {
     hsvErrArea_ = colorErrArea;
 }
 
+void Hsv::addColor(const cv::Vec3b& color) {
 
+}
 
+void Hsv::doMeanColorFirstArea(int size) {
 
+}
 
+bool Hsv::compareColorOfNextArea(const cv::Vec3b& color) {
 
-
+}
 
 
 

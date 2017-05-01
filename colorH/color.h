@@ -15,9 +15,12 @@ public:
     Color();
     virtual ~Color();
     virtual void doMeanColorFirstSquare(const std::pair<int,int>& p, const SizeSquare& sizeSquare, const cv::Mat& mat) = 0;
+    virtual void doMeanColorFirstArea(int size) = 0;
     virtual void doColorFirstPixel(const std::pair<int,int>& p, const cv::Mat& mat) = 0;
     virtual cv::Vec3b doMeanColorTmpSquare(const std::pair<int,int>& p, const SizeSquare& sizeSquare, const cv::Mat& mat) = 0;
     virtual bool compareColorOfNextSquare(const cv::Vec3b& color) = 0;
+    virtual bool compareColorOfNextArea(const cv::Vec3b& color) = 0;
+    virtual void addColor(const cv::Vec3b& color) = 0;
     virtual cv::Vec3b& getColorPixel() = 0;
     virtual cv::Vec3b& getColorSquare() = 0;
     virtual cv::Vec3b& getColorFirstArea() = 0;

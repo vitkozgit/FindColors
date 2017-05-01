@@ -6,15 +6,15 @@ Rgb::Rgb() : rgbPixel_(cv::Vec3b(0,0,0)),
              rgbErrSquare_(cv::Vec3b(0,0,0)),
              rgbErrArea_(cv::Vec3b(0,0,0))
 {
-
+    r_ = 0; g_ = 0; b_ = 0;
 }
 
 Rgb::~Rgb() {}
 
 void Rgb::doMeanColorFirstSquare(const std::pair<int,int>& p, const SizeSquare& sizeSquare, const cv::Mat& mat) {
     double red = 0.0, green = 0.0, blue = 0.0;
-    for(int row = p.first - sizeSquare.minusHalfSize_; row <= p.first + sizeSquare.plusHalfSize_; ++row) {
-        for(int col = p.second - sizeSquare.minusHalfSize_; col <= p.second + sizeSquare.plusHalfSize_; ++col) {
+    for(int row = p.first - sizeSquare.plusHalfSize_; row <= p.first + sizeSquare.plusHalfSize_; ++row) {
+        for(int col = p.second - sizeSquare.plusHalfSize_; col <= p.second + sizeSquare.plusHalfSize_; ++col) {
             cv::Vec3b bgr = mat.at<cv::Vec3b>(row,col);
             blue += bgr[0];
             green += bgr[1];
@@ -30,8 +30,8 @@ void Rgb::doMeanColorFirstSquare(const std::pair<int,int>& p, const SizeSquare& 
 
 cv::Vec3b Rgb::doMeanColorTmpSquare(const std::pair<int,int>& p, const SizeSquare& sizeSquare, const cv::Mat& mat) {
     double red = 0.0, green = 0.0, blue = 0.0;
-    for(int row = p.first - sizeSquare.minusHalfSize_; row <= p.first + sizeSquare.plusHalfSize_; ++row) {
-        for(int col = p.second - sizeSquare.minusHalfSize_; col <= p.second + sizeSquare.plusHalfSize_; ++col) {
+    for(int row = p.first - sizeSquare.plusHalfSize_; row <= p.first + sizeSquare.plusHalfSize_; ++row) {
+        for(int col = p.second - sizeSquare.plusHalfSize_; col <= p.second + sizeSquare.plusHalfSize_; ++col) {
             cv::Vec3b bgr = mat.at<cv::Vec3b>(row,col);
             blue += bgr[0];
             green += bgr[1];
@@ -63,6 +63,29 @@ bool Rgb::compareColorOfNextSquare(const cv::Vec3b& color) {
     redErr = rgbErrSquare_[0];
     greenErr = rgbErrSquare_[1];
     blueErr = rgbErrSquare_[2];
+
+    if(color[0] > (red + redErr/2) || color[0] < (red - redErr/2)) {
+        return false;
+    }
+    if(color[1] > (green + greenErr/2) || color[1] < (green - greenErr/2)) {
+        return false;
+    }
+    if(color[2] > (blue + blueErr/2) || color[2] < (blue - blueErr/2)) {
+        return false;
+    }
+    return true;
+}
+
+bool Rgb::compareColorOfNextArea(const cv::Vec3b& color) {
+    unsigned char red, green, blue;
+    unsigned char redErr, greenErr, blueErr;
+    red = rgbFirstArea_[0];
+    green = rgbFirstArea_[1];
+    blue = rgbFirstArea_[2];
+
+    redErr = rgbErrArea_[0];
+    greenErr = rgbErrArea_[1];
+    blueErr = rgbErrArea_[2];
 
     if(color[0] > (red + redErr/2) || color[0] < (red - redErr/2)) {
         return false;
@@ -116,10 +139,23 @@ void Rgb::setColorErrArea(const cv::Vec3b& colorErrArea) {
     rgbErrArea_ = colorErrArea;
 }
 
+void Rgb::addColor(const cv::Vec3b& color) {
+    r_ += static_cast<double>(color[0]);
+    g_ += static_cast<double>(color[1]);
+    b_ += static_cast<double>(color[2]);
+}
 
 
-
-
+void Rgb::doMeanColorFirstArea(int size) {
+    double red = r_ / static_cast<double>(size);
+    double green = g_ / static_cast<double>(size);
+    double blue = b_ / static_cast<double>(size);
+    cv::Vec3b rgbFirstArea = {static_cast<unsigned char>(red),static_cast<unsigned char>(green),static_cast<unsigned char>(blue)};
+    setColorFirstArea(rgbFirstArea);
+    r_ = 0.0;
+    g_ = 0.0;
+    b_ = 0.0;
+}
 
 
 

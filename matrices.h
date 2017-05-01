@@ -17,6 +17,8 @@ public:
     const cv::String& getNameMaskMat() const;
     const cv::String& getNamePictureMat() const;
 
+    void setMaskMat(const cv::Mat& mat);
+
     void setPictureMat(const cv::Mat& mat);
 private:
     cv::Mat workMat_;
