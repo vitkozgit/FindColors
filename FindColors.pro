@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     colorCPP/rgb.cpp \
     xypoints.cpp \
     sizesquare.cpp \
-    dialogerror.cpp
+    dialogerror.cpp \
+    information.cpp
 
 HEADERS  += findcolors.h \
     video.h \
@@ -35,10 +36,12 @@ HEADERS  += findcolors.h \
     colorH/rgb.h \
     xypoints.h \
     sizesquare.h \
-    dialogerror.h
+    dialogerror.h \
+    information.h
 
 FORMS    += findcolors.ui \
-    dialogerror.ui
+    dialogerror.ui \
+    information.ui
 
 INCLUDEPATH += /usr/local/include/opencv /usr/local/include/opencv2
 
@@ -47,4 +50,7 @@ LIBS += `pkg-config --cflags --libs opencv`
 DISTFILES += \
     Resources/War.jpg \
     colors/hsv.rgb \
-    README.md
+    README.md \
+    OtherData/icon.jpg \
+    OtherData/camera.png \
+    OtherData/video.mp4

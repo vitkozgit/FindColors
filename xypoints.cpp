@@ -7,9 +7,7 @@ XyPoints::XyPoints() : xy_(std::pair<int,int>(0,0)),
 
 }
 
-XyPoints::~XyPoints() {
-
-}
+XyPoints::~XyPoints() {}
 
 std::pair<int,int>& XyPoints::getXy() {
     return xy_;

@@ -24,6 +24,7 @@ public:
     virtual void setColorFirstArea(const cv::Vec3b& colorFirstArea);
     virtual void setColorErrSquare(const cv::Vec3b& colorErrSquare);
     virtual void setColorErrArea(const cv::Vec3b& colorErrArea);
+    virtual const cv::Vec3b &markColor() const;
 
 private:
     cv::Vec3b hsvPixel_;
@@ -31,6 +32,10 @@ private:
     cv::Vec3b hsvFirstArea_;
     cv::Vec3b hsvErrSquare_;
     cv::Vec3b hsvErrArea_;
+    double h_;
+    double s_;
+    double v_;
+    cv::Vec3b markColorForHsv_;
 };
 
 #endif // HSV_H

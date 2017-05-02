@@ -2,11 +2,8 @@
 #include "ui_findcolors.h"
 
 void FindColors::defaultStyles() {
-    //QSize size = ui->labelPicture->size();
-    //QDir myDir = QDir::currentPath();
-    //auto path = QApplication::applicationDirPath();
-    //myPicture_ = QPixmap("/home/vitali/Projects/Zadanie_5_NEW/FindColors/Resources/War.jpg");
-    //ui->labelPicture->setPixmap(myPicture_.scaled(size,Qt::KeepAspectRatio));
+    QPixmap image(QDir::currentPath() + "/OtherData/camera_2.jpg");
+    ui->labelPicture->setPixmap(image.scaled(ui->labelPicture->width(),ui->labelPicture->height(),Qt::KeepAspectRatio));
 
     ui->lcdNumberErrOneS->display(40);
     ui->lcdNumberErrTwoS->display(40);
@@ -26,6 +23,7 @@ void FindColors::defaultStyles() {
 
     ui->radioButtonRGB->setChecked(true);
     ui->radioButtonPhoto->setChecked(true);
+    ui->radioButtonArea->setChecked(true);
 
     color_ = new Rgb();
     ui->radioButtonRGB->setEnabled(false);

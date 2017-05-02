@@ -5,6 +5,7 @@ class SizeSquare {
 public:
     SizeSquare(int sizeSquare = 0);
     ~SizeSquare();
+    void setNewSize(int size);
 
     int size_;
     int minusHalfSize_;

@@ -4,9 +4,10 @@ Rgb::Rgb() : rgbPixel_(cv::Vec3b(0,0,0)),
              rgbSquare_(cv::Vec3b(0,0,0)),
              rgbFirstArea_(cv::Vec3b(0,0,0)),
              rgbErrSquare_(cv::Vec3b(0,0,0)),
-             rgbErrArea_(cv::Vec3b(0,0,0))
+             rgbErrArea_(cv::Vec3b(0,0,0)),
+             markColorForRgb_(cv::Vec3b(255,0,0))
 {
-    r_ = 0; g_ = 0; b_ = 0;
+    r_ = 0.0; g_ = 0.0; b_ = 0.0;
 }
 
 Rgb::~Rgb() {}
@@ -157,7 +158,9 @@ void Rgb::doMeanColorFirstArea(int size) {
     b_ = 0.0;
 }
 
-
+const cv::Vec3b& Rgb::markColor() const {
+    return markColorForRgb_;
+}
 
 
 

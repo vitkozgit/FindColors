@@ -2,10 +2,9 @@
 #include "ui_findcolors.h"
 
 void FindColors::on_radioButtonCamera_clicked() {
+    myVideo_.getTimer()->stop();
     video_.getTimer()->start(15);
 
-    //video_.getVideoCapture()->read(matrix_.getWorkMat());
-    //size_ = QSize(matrix_.getWorkMat().cols,matrix_.getWorkMat().rows);
     cMask_ = std::vector<std::vector<int>>(size_.rheight(), std::vector<int>(size_.rwidth(),0));
 
     ui->radioButtonCamera->setEnabled(false);
@@ -14,8 +13,15 @@ void FindColors::on_radioButtonCamera_clicked() {
 
 void FindColors::on_radioButtonVideo_clicked() {
     video_.getTimer()->stop();
+    cMask_ = std::vector<std::vector<int>>(size_.rheight(), std::vector<int>(size_.rwidth(),0));
+
     ui->radioButtonCamera->setEnabled(true);
     ui->radioButtonVideo->setEnabled(false);
+
+    myVideo_.setPath(QFileDialog::getOpenFileName(this));
+    myVideo_.getVideoCapture()->open(myVideo_.getPath().toUtf8().data());
+    myVideo_.getTimer()->start(30);
+    myVideo_.getVideoCapture()->read(matrix_.getTmpMat());
 }
 
 void FindColors::on_radioButtonRGB_clicked() {
@@ -58,7 +64,7 @@ void FindColors::on_radioButtonInRun_clicked() {
 }
 
 void FindColors::on_pushButtonSetErrors_clicked() {
-    dialogErrors.show();
+    dialogErrors_.show();
 }
 
 void FindColors::setErrorColors(const QMap<QString,cv::Vec3b>& errorColors) {
@@ -77,9 +83,19 @@ void FindColors::setErrorColors(const QMap<QString,cv::Vec3b>& errorColors) {
     color_->setColorErrArea(area);
 }
 
+void FindColors::on_spinBoxSizeSquare_editingFinished() {
+    sizeSquare_.setNewSize(ui->spinBoxSizeSquare->value());
+}
 
+void FindColors::on_radioButtonSquare_clicked() {
 
+}
 
+void FindColors::on_radioButtonArea_clicked() {
 
+}
 
+void FindColors::on_pushButtonAboutApp_clicked() {
+    inf_.show();
+}
 

@@ -31,7 +31,7 @@ public:
     virtual void setColorFirstArea(const cv::Vec3b& colorFirstArea) = 0;
     virtual void setColorErrSquare(const cv::Vec3b& colorErrSquare) = 0;
     virtual void setColorErrArea(const cv::Vec3b& colorErrArea) = 0;
-
+    virtual const cv::Vec3b &markColor() const = 0;
 };
 
 #endif // COLOR_H

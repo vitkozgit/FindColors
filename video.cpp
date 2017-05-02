@@ -15,3 +15,11 @@ std::shared_ptr<QTimer> Video::getTimer() const {
 std::shared_ptr<cv::VideoCapture> Video::getVideoCapture() const {
     return videoCapture_;
 }
+
+const QString& Video::getPath() const {
+    return path_;
+}
+
+void Video::setPath(const QString& path) {
+    path_ = path;
+}

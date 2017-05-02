@@ -1,16 +1,22 @@
 #include "dialogerror.h"
 #include "ui_dialogerror.h"
 
-DialogError::DialogError(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogError)
-{
+DialogError::DialogError(QWidget *parent) : QDialog(parent), ui(new Ui::DialogError) {
     ui->setupUi(this);
     setDefaulValues();
+    errArea_ = false;
+    errSquare_ = false;
 
     QDialog::connect(ui->buttonBoxAcceptErrors->button(QDialogButtonBox::Ok),SIGNAL(clicked(bool)),this,SLOT(okClicked()));
     QDialog::connect(ui->buttonBoxAcceptErrors->button(QDialogButtonBox::Cancel),SIGNAL(clicked(bool)),this,SLOT(close()));
+}
 
+bool DialogError::getStateErrArea() {
+    return errArea_;
+}
+
+bool DialogError::getStateErrSquare() {
+    return errSquare_;
 }
 
 void DialogError::okClicked() {
@@ -37,25 +43,11 @@ DialogError::~DialogError() {
 }
 
 void DialogError::setDefaulValues() {
-    ui->lineEditColorSquare_1->setText("50");
-    ui->lineEditColorSquare_2->setText("50");
-    ui->lineEditColorSquare_3->setText("50");
+    ui->lineEditColorSquare_1->setText("80");
+    ui->lineEditColorSquare_2->setText("80");
+    ui->lineEditColorSquare_3->setText("80");
 
-    ui->lineEditColorArea_1->setText("50");
-    ui->lineEditColorArea_2->setText("50");
-    ui->lineEditColorArea_3->setText("50");
+    ui->lineEditColorArea_1->setText("80");
+    ui->lineEditColorArea_2->setText("80");
+    ui->lineEditColorArea_3->setText("80");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

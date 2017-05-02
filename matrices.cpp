@@ -13,6 +13,10 @@ cv::Mat& Matrices::getWorkMat() {
     return workMat_;
 }
 
+void Matrices::setWorkMat(const cv::Mat& workMat) {
+    workMat_ = workMat;
+}
+
 cv::Mat& Matrices::getMaskMat() {
     return maskMat_;
 }
@@ -39,4 +43,8 @@ void Matrices::setPictureMat(const cv::Mat& mat) {
 
 void Matrices::setMaskMat(const cv::Mat& mat) {
     maskMat_ = mat;
+}
+
+cv::Mat& Matrices::getTmpMat() {
+    return tmpMat_;
 }

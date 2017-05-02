@@ -3,10 +3,7 @@
 
 bool FindColors::controlClick_ = false;
 
-FindColors::FindColors(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::FindColors), sizeSquare_(7) // tylko nieparzyste
-{
+FindColors::FindColors(QWidget *parent) : QMainWindow(parent), ui(new Ui::FindColors), sizeSquare_(7) {
     ui->setupUi(this);
     defaultStyles();
 
@@ -18,9 +15,10 @@ FindColors::FindColors(QWidget *parent) :
     size_ = QSize(width, height);
 
     video_.getVideoCapture()->open(0);
-    QObject::connect(video_.getTimer().get(),SIGNAL(timeout()),this, SLOT(processVideo()));
 
-    QObject::connect(&dialogErrors,SIGNAL(emitErrorColors(QMap<QString,cv::Vec3b>)),SLOT(setErrorColors(QMap<QString,cv::Vec3b>)));
+    QObject::connect(video_.getTimer().get(),SIGNAL(timeout()),this, SLOT(processVideo()));
+    QObject::connect(myVideo_.getTimer().get(),SIGNAL(timeout()),this, SLOT(processVideo()));
+    QObject::connect(&dialogErrors_,SIGNAL(emitErrorColors(QMap<QString,cv::Vec3b>)),SLOT(setErrorColors(QMap<QString,cv::Vec3b>)));
 }
 
 FindColors::~FindColors() {
@@ -30,8 +28,20 @@ FindColors::~FindColors() {
 
 void FindColors::processVideo() {
     //łapie obraz i wczytuje (dwa działania na raz zamias grab i retrieve)
-    video_.getVideoCapture()->read(matrix_.getWorkMat());
+    if(ui->radioButtonCamera->isChecked()) {
+        video_.getVideoCapture()->read(matrix_.getWorkMat());
+    } else if(ui->radioButtonVideo->isChecked()) {
+            myVideo_.getVideoCapture()->read(matrix_.getWorkMat());
+            if(matrix_.getWorkMat().empty()) {
+                myVideo_.getTimer()->stop();
+                std::cout << "1234" << std::endl;
+                matrix_.setWorkMat(matrix_.getTmpMat());
+            }
+    }
     cv::resize(matrix_.getWorkMat(),matrix_.getWorkMat(),cv::Size(size_.rwidth(),size_.rheight()));
+    if(ui->radioButtonHSV->isChecked()) {
+        cv::cvtColor(matrix_.getWorkMat(),matrix_.getWorkMat(),CV_BGR2HSV);
+    }
 
     cv::setMouseCallback(matrix_.getNameWorkMat(),[](int event, int x, int y, int, void* param) {
         if(event == cv::EVENT_LBUTTONDOWN) {
@@ -46,8 +56,6 @@ void FindColors::processVideo() {
     //Blok do znajdywania kontrolnych punktów
     if(ui->radioButtonPhoto->isChecked()) {
         if(FindColors::controlClick_) {
-            std::cout << points_.getXy().first << " | " << points_.getXy().second << std::endl;
-            std::cout << CV_CAP_PROP_FRAME_HEIGHT << " | " << CV_CAP_PROP_FRAME_WIDTH << std::endl;
             FindColors::controlClick_ = false;
 
             //ustawiamy kolor pierwszego pixela
@@ -65,13 +73,16 @@ void FindColors::processVideo() {
 
             //Robię obrazek z kolorem
             matrix_.setPictureMat(matrix_.getWorkMat());
-            draw<cv::Vec3b>(points_.getXyGroupPairs(),matrix_.getPictureMat(),cv::Vec3b(0,0,255));
+            draw<cv::Vec3b>(points_.getXyGroupPairs(),matrix_.getPictureMat(),color_->markColor());
 
             //Robię maskę tej matrycy (przez cMask nie sposób)
             matrix_.setMaskMat(cv::Mat(size_.rheight(),size_.rwidth(),CV_8UC1,cv::Scalar(0,0,0)));
             draw<uchar>(points_.getXyGroupPairs(),matrix_.getMaskMat(),static_cast<uchar>(255));
 
             //Wyrysowuję dwie matrycy
+            if(ui->radioButtonHSV->isChecked()) {
+                cv::cvtColor(matrix_.getPictureMat(),matrix_.getPictureMat(),CV_HSV2BGR);
+            }
             cv::imshow(matrix_.getNameMaskMat(),matrix_.getMaskMat());
             cv::imshow(matrix_.getNamePictureMat(),matrix_.getPictureMat());
 
@@ -95,7 +106,7 @@ void FindColors::processVideo() {
         }
         //szukam wszystkie punkty
         findAllPoints();
-        draw<cv::Vec3b>(points_.getXyGroupPairs(),matrix_.getWorkMat(),cv::Vec3b(0,0,255));
+        draw<cv::Vec3b>(points_.getXyGroupPairs(),matrix_.getWorkMat(),color_->markColor());
 
         //Robię maskę tej matrycy (przez cMask nie sposób)
         matrix_.setMaskMat(cv::Mat(size_.rheight(),size_.rwidth(),CV_8UC1,cv::Scalar(0,0,0)));
@@ -112,6 +123,10 @@ void FindColors::processVideo() {
         exit(EXIT_FAILURE);
     }
     //Po wyjściu mamy kontrolne punkty, wystarczy tylko zaznaczyć na mapie
+
+    if(ui->radioButtonHSV->isChecked()) {
+        cv::cvtColor(matrix_.getWorkMat(),matrix_.getWorkMat(),CV_HSV2BGR);
+    }
 
     cv::imshow(matrix_.getNameWorkMat(),matrix_.getWorkMat());
 }
@@ -141,8 +156,6 @@ void FindColors::draw(const std::vector<std::vector<std::pair<int,int>>>& groups
         }
     }
 }
-
-
 
 void FindColors::setSizeImg(const QSize& size) {
     size_ = size;
@@ -195,9 +208,19 @@ void FindColors::wholeChecking(const std::pair<int, int>& tmpYX, std::queue<std:
         if(!hasTrueElementsInSquare(tmpYX)) {
             setTrueElementsOfMask(tmpYX);
             cv::Vec3b tmpColor = color_->doMeanColorTmpSquare(tmpYX,sizeSquare_.size_,matrix_.getWorkMat());
-            if(color_->compareColorOfNextArea(tmpColor)) {
-                queue.push(tmpYX);
-                points_.getXyPairs().push_back(tmpYX);
+            if(ui->radioButtonArea->isChecked()) {
+                if(color_->compareColorOfNextArea(tmpColor)) {
+                    queue.push(tmpYX);
+                    points_.getXyPairs().push_back(tmpYX);
+                }
+            } else if(ui->radioButtonSquare->isChecked()) {
+                if(color_->compareColorOfNextSquare(tmpColor)) {
+                    queue.push(tmpYX);
+                    points_.getXyPairs().push_back(tmpYX);
+                }
+            } else {
+                std::cout << "There are not checked: Area or Square" << std::endl;
+                exit(EXIT_FAILURE);
             }
         }
     }

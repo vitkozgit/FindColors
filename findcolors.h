@@ -6,6 +6,10 @@
 #include <QPixmap>
 #include <QSize>
 #include <QDir>
+#include <QFileDialog>
+#include <QIcon>
+#include <QCoreApplication>
+#include <QLabel>
 
 // lib std, boost
 #include <memory>
@@ -28,6 +32,7 @@
 #include "xypoints.h"
 #include "sizesquare.h"
 #include "dialogerror.h"
+#include "information.h"
 
 namespace Ui {
 class FindColors;
@@ -55,6 +60,7 @@ public:
     void drawOneSquare(const std::pair<int,int>& yx, cv::Mat &mat, T color);
     template <typename T>
     void draw(const std::vector<std::vector<std::pair<int,int>>>& groupsYX, cv::Mat &mat, T color);
+
     void drawMask(const std::vector<std::vector<std::pair<int,int>>>& groupsYX, cv::Mat& mat);
     bool controlClick(int x, int y);
     bool isPointBelongsToField(const std::pair<int,int>& yx);
@@ -75,22 +81,26 @@ private slots:
     void on_radioButtonHSV_clicked();
     void on_radioButtonPhoto_clicked();
     void on_radioButtonInRun_clicked();
-
     void on_pushButtonSetErrors_clicked();
-
     void on_radioButtonVideo_clicked();
+    void on_spinBoxSizeSquare_editingFinished();
+    void on_radioButtonSquare_clicked();
+    void on_radioButtonArea_clicked();
+    void on_pushButtonAboutApp_clicked();
 
 private:
     Ui::FindColors *ui;
     QPixmap myPicture_;
     Video video_;
+    Video myVideo_;
     Matrices matrix_;
     std::vector<std::vector<int>> cMask_;
     Color *color_;
     QSize size_;
     XyPoints points_;
     SizeSquare sizeSquare_;
-    DialogError dialogErrors;
+    DialogError dialogErrors_;
+    Information inf_;
 };
 
 #endif // FINDCOLORS_H

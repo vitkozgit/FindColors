@@ -23,6 +23,8 @@ public:
     explicit DialogError(QWidget *parent = 0);
     ~DialogError();
     void setDefaulValues();
+    bool getStateErrArea();
+    bool getStateErrSquare();
 
 private slots:
     void okClicked();
@@ -32,6 +34,8 @@ signals:
 
 private:
     Ui::DialogError *ui;
+    bool errSquare_;
+    bool errArea_;
 };
 
 #endif // DIALOGERROR_H

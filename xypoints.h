@@ -10,8 +10,8 @@ public:
     std::pair<int,int>& getXy();
     std::vector<std::pair<int,int>>& getXyPairs();
     std::vector<std::vector<std::pair<int,int>>>& getXyGroupPairs();
-
     void setXy(const std::pair<int,int>& xy);
+
 private:
     std::pair<int,int> xy_;
     std::vector<std::pair<int,int>> xyPairs_;

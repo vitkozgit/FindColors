@@ -25,6 +25,7 @@ public:
     virtual void setColorFirstArea(const cv::Vec3b& colorFirstArea);
     virtual void setColorErrSquare(const cv::Vec3b& colorErrSquare);
     virtual void setColorErrArea(const cv::Vec3b& colorErrArea);
+    virtual const cv::Vec3b &markColor() const;
 
 private:
     cv::Vec3b rgbPixel_;
@@ -35,6 +36,7 @@ private:
     double r_;
     double g_;
     double b_;
+    cv::Vec3b markColorForRgb_;
 };
 
 #endif //RGB_H
